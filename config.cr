@@ -198,7 +198,12 @@ module AutoDisplayManagerCR
         end
 
         def get_display(display : String, profile = "default")
-            @config[profile][display].as(Hash(String, String))
+            profile_data = @config[profile]
+            if profile_data.is_a?(Hash)
+                profile_data[display].as(Hash(String, String))
+            else
+                {} of String => String
+            end
         end
 
         private def from_yaml(yaml_root : YAML::Any)
