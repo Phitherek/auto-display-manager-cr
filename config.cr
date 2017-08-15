@@ -54,10 +54,14 @@ module AutoDisplayManagerCR
             sorted_profiles = @config["profiles"]
             if sorted_profiles.is_a?(Array)
                 sorted_profiles.sort
-                current_idx = sorted_profiles.index(@config["selected_profile"])
-                current_idx ||= -1
-                current_idx = current_idx + 1
-                current_idx = 0 if current_idx >= sorted_profiles.size
+                if @config.has_key?("selected_profile")
+                    current_idx = sorted_profiles.index(@config["selected_profile"])
+                    current_idx ||= -1
+                    current_idx = current_idx + 1
+                    current_idx = 0 if current_idx >= sorted_profiles.size
+                else
+                    current_idx = 0
+                end
                 @config["selected_profile"] = sorted_profiles[current_idx]
             end
         end

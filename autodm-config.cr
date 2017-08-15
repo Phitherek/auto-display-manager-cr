@@ -5,10 +5,14 @@ puts
 homepath = ENV["HOME"]
 config = AutoDisplayManagerCR::Config.new("#{homepath}/.auto-display-manager")
 if ARGV.size >= 1
-    unless %w(usage help list set unset switch next_profile remove).includes?(ARGV[0].downcase)
-        profile = ARGV.delete_at(0).downcase
-    else
+    if %w(usage help list set unset switch next_profile remove).includes?(ARGV[0].downcase)
         profile = nil
+    elsif ARGV.size >= 2
+      profile = ARGV.delete_at(0).downcase 
+    else
+        puts "Usage: #{$0} [profile_name] <command> [parameters]"
+        puts "See 'help' command for list of commands and parameters"
+        abort(nil, 0)
     end
     if ARGV[0].downcase == "usage"
         puts "Usage: #{$0} [profile_name] <command> [parameters]"
@@ -68,7 +72,7 @@ if ARGV.size >= 1
         config.switch_profile(profile)
         config.save
         config.reset
-        `notify-send -t 2000 -a autodm-config -c autodm-config 'AutoDisplayManager profile switched!' 'Switched to profile: #{config.selected_profile}'`
+        `/usr/bin/notify-send -t 3000 -a autodm-config -c autodm-config 'AutoDisplayManager profile switched\!' 'Switched to profile: #{config.selected_profile}'`
         puts "Done!"
         puts "Current configuration: "
         config.display(nil)
@@ -77,7 +81,7 @@ if ARGV.size >= 1
         config.next_profile!
         config.save
         config.reset
-        `notify-send -t 2000 -a autodm-config -c autodm-config 'AutoDisplayManager profile switched!' 'Switched to profile: #{config.selected_profile}'`
+        `/usr/bin/notify-send -t 3000 -a autodm-config -c autodm-config 'AutoDisplayManager profile switched\!' 'Switched to profile: #{config.selected_profile}'`
         puts "Done!"
         puts "Current configuration: "
         config.display(nil)
