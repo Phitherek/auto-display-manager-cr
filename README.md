@@ -4,9 +4,9 @@ A rewrite of my Ruby script for automatic management of multiple screens (displa
 
 ## Dependencies
 
-crystal 0.23.1
-xrandr (tested with 1.5)
-notify-send from libnotify (tested with 0.7.7) and notification daemon
+* crystal 0.23.1
+* xrandr (tested with 1.5)
+* notify-send from libnotify (tested with 0.7.7) and notification daemon
 
 ## Installation
 
