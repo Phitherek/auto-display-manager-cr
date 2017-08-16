@@ -52,11 +52,19 @@ module AutoDisplayManagerCR
         end
 
         def process
-            @state["process"]
+            if @state.has_key?("process")
+                @state["process"]
+            else
+                "not running"
+            end
         end
 
         def last_update
-            @state["last_update"]
+            if @state.has_key?("last_update")
+                @state["last_update"]
+            else
+                Time.now.to_s
+            end
         end
 
         def get(name : String)

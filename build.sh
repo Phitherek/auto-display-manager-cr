@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir bin
+mkdir -p bin
 cd bin
 echo "Building AutoDisplayManager Configurator in release mode..."
 crystal build ../src/autodm-config.cr --release
