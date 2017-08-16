@@ -1,7 +1,7 @@
 require "./config"
 require "./state"
 
-puts "AutoDisplayManager v. 0.1-cr (C) 2017 by Phitherek_"
+puts "AutoDisplayManager v. 0.1.1-cr (C) 2017 by Phitherek_"
 puts
 if ARGV.size < 1
     puts "Usage: #{$0} <start|kill|status|pause|resume>"
@@ -41,7 +41,7 @@ else
                     if old_profile != profile
                         c.displays.each do |d|
                             if d != "main"
-                                if c.get_profile(old_profile).includes?(d)
+                                if c.get_profile(old_profile).has_key?(d)
                                     system("xrandr --output #{c.get_display(d, old_profile)["str"]} --off")
                                     s.set(d, "disconnected")
                                 end

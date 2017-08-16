@@ -1,6 +1,6 @@
 require "./config"
 
-puts "AutoDisplayManager Configurator v. 0.1-cr (C) 2017 by Phitherek_"
+puts "AutoDisplayManager Configurator v. 0.1.1-cr (C) 2017 by Phitherek_"
 puts
 homepath = ENV["HOME"]
 config = AutoDisplayManagerCR::Config.new("#{homepath}/.auto-display-manager")
