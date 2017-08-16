@@ -5,5 +5,6 @@ if [ -z "$PREFIX" ]; then
 fi
 
 echo "Installing AutoDisplayManager to prefix $PREFIX..."
+mkdir -p "$PREFIX/bin"
 cp bin/* "$PREFIX/bin"
 echo "AutoDisplayManager installed!"
